@@ -18,14 +18,14 @@ const useFetch = (url: string) => {
         }
       };
 
-    const [result, setResult] = useState<RandomUser>(null);
+    const [result, setResult] = useState<RandomUser | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     
     const fetchData = async() => {
         try {
-            let response = await axios.get<RandomUser>(url);
-            setResult(response.data);
+            let response = await axios.get<RandomUser[]>(url);
+            setResult(response.data[0]);
             setLoading(false);
         } 
         catch (err: any) {
